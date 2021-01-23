@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuMenu : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
-public void PlayGame()
+
+public void Restart()
 {
-    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    SceneManager.LoadScene("Scene1");
     Time.timeScale = 1f;
+    KillFloor.R = 0;
 }
 public void Quit()
 {

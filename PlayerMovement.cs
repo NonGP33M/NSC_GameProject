@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
         
-        public Transform RespawnPoint;
         public Animator animator;
         public CharacterController2D controller;
         public float runSpeed = 20f;
         float horizontalMove = 0f;
         bool jump = false;
+        public bool Push;
+       
+        
 
          // Update is called once per frame
          void Update () {
@@ -22,15 +24,19 @@ public class PlayerMovement : MonoBehaviour {
                        jump = true;
                  }
                  
+      }
+            void OnTriggerStay2D(Collider2D col)
+      {
+        if(col.transform.CompareTag("Box"))
+            animator.SetBool("Push", true);
+         
+      }
 
-          }
-          void OnCollision(Collider2D col)
-          {
-                if(col.gameObject.tag ==  "FallingCheck")
-                {
-                      Debug.Log("gg");
-                }
-          }
+            void OnTriggerExit2D(Collider2D col)
+      {
+           animator.SetBool("Push", false);
+      }
+
           void FixedUpdate ()
           {
                    // Move our character
